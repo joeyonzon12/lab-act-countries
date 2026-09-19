@@ -1,32 +1,42 @@
-// NOTE: The nav below uses <a href="…"> which triggers full page reloads.
-// Lab 07 asks you to install react-router and replace these with <Link>.
+import { NavLink, Outlet } from "react-router";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <nav className="h-14 flex items-center justify-between border-2 px-5 border-blue-600">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🌍</span>
-          <span className="font-bold">Countries of the World</span>
+      <header className="bg-slate-800 text-white p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-xl font-bold">Countries of the World</h1>
+          <nav className="flex gap-4">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/countries"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Countries
+            </NavLink>
+            <NavLink
+              to="/bucket-list"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Bucket List
+            </NavLink>
+          </nav>
         </div>
+      </header>
 
-        <div className="flex gap-5">
-          <a href="/">
-            <p className="text-[12px]">Home</p>
-          </a>
-          <a href="/countries">
-            <p className="text-[12px]">Countries</p>
-          </a>
-          <a href="/bucket-list">
-            <p className="text-[12px]">Bucket List</p>
-          </a>
-          <a href="/about">
-            <p className="text-[12px]">About</p>
-          </a>
-        </div>
-      </nav>
-      <main className="flex-1 border-2 border-amber-400 p-3">
-        {children}
+      <main className="flex-1 container mx-auto p-4">
+        <Outlet />
       </main>
     </div>
   );
