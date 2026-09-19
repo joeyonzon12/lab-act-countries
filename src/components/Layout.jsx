@@ -3,70 +3,41 @@ import { NavLink, Outlet } from "react-router";
 const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
-
-      <nav className="h-14 flex items-center justify-between px-5 shadow">
-
-        <div className="flex items-center gap-2">
-          <span className="font-bold">Countries of the World</span>
+      <header className="bg-slate-800 text-white p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-xl font-bold">Countries of the World</h1>
+          <nav className="flex gap-4">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/countries"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Countries
+            </NavLink>
+            <NavLink
+              to="/bucket-list"
+              className={({ isActive }) =>
+                isActive ? "text-blue-400 font-semibold" : "hover:text-gray-300"
+              }
+            >
+              Bucket List
+            </NavLink>
+          </nav>
         </div>
+      </header>
 
-        <div className="flex gap-5">
-
-          <NavLink to="/" end>
-            {({ isActive }) => (
-              <p
-                className={`text-[12px] ${
-                  isActive ? "font-bold text-blue-600" : ""
-                }`}
-              >
-                Home
-              </p>
-            )}
-          </NavLink>
-
-          <NavLink to="/countries">
-            {({ isActive }) => (
-              <p
-                className={`text-[12px] ${
-                  isActive ? "font-bold text-blue-600" : ""
-                }`}
-              >
-                Countries
-              </p>
-            )}
-          </NavLink>
-
-          <NavLink to="/bucket-list">
-            {({ isActive }) => (
-              <p
-                className={`text-[12px] ${
-                  isActive ? "font-bold text-blue-600" : ""
-                }`}
-              >
-                Bucket List
-              </p>
-            )}
-          </NavLink>
-
-          <NavLink to="/about">
-            {({ isActive }) => (
-              <p
-                className={`text-[12px] ${
-                  isActive ? "font-bold text-blue-600" : ""
-                }`}
-              >
-                About
-              </p>
-            )}
-          </NavLink>
-
-        </div>
-      </nav>
-
-      <main className="flex-1 p-6">
+      <main className="flex-1 container mx-auto p-4">
         <Outlet />
       </main>
-
     </div>
   );
 };
