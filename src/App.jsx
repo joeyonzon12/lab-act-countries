@@ -6,18 +6,27 @@ import CountryDetailPage from "./pages/CountryDetailPage";
 import BucketListPage from "./pages/BucketListPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CountriesLayout from "./components/CountriesLayout";
+import RequireValidCountry from "./components/RequireValidCountry";
+import RequireLogin from "./components/RequireLogin";
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="countries" element={<CountriesPage />} />
-        <Route path="countries/:countryCode" element={<CountryDetailPage />} />
+        <Route path="countries" element={<CountriesLayout />}>
+        <Route index element={<CountriesPage />} />
+        <Route element={<RequireValidCountry />}>
+        <Route path=":countryCode" element={<CountryDetailPage />} />
+        <Route element={<RequireLogin />}>
         <Route path="bucket-list" element={<BucketListPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
+      </Route>
+      </Route>
+    </Route>
     </Routes>
   );
 };
